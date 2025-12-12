@@ -1,0 +1,203 @@
+{
+  "info": {
+    "_postman_id": "taskflow-api",
+    "name": "TaskFlow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"user@example.com\", \"password\": \"password\", \"name\": \"John Doe\"}"
+            },
+            "url": "{{baseUrl}}/api/auth/register"
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"user@example.com\", \"password\": \"password\"}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "List Projects",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/projects" }
+        },
+        {
+          "name": "Create Project",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"My Project\", \"description\": \"Description\", \"status\": \"planning\"}"
+            },
+            "url": "{{baseUrl}}/api/projects"
+          }
+        },
+        {
+          "name": "Get Project",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/projects/1" }
+        },
+        {
+          "name": "Update Project",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\": \"active\"}"
+            },
+            "url": "{{baseUrl}}/api/projects/1"
+          }
+        },
+        {
+          "name": "Delete Project",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/api/projects/1" }
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "List Tasks",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/tasks" }
+        },
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"New Task\", \"projectId\": 1, \"priority\": \"medium\"}"
+            },
+            "url": "{{baseUrl}}/api/tasks"
+          }
+        },
+        {
+          "name": "Update Task",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\": \"in_progress\"}"
+            },
+            "url": "{{baseUrl}}/api/tasks/1"
+          }
+        },
+        {
+          "name": "Delete Task",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/api/tasks/1" }
+        }
+      ]
+    },
+    {
+      "name": "Teams",
+      "item": [
+        {
+          "name": "List Teams",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/teams" }
+        },
+        {
+          "name": "Create Team",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Dev Team\", \"description\": \"Development team\"}"
+            },
+            "url": "{{baseUrl}}/api/teams"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "List Task Comments",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/tasks/1/comments" }
+        },
+        {
+          "name": "Create Comment",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"content\": \"This is a comment\", \"userId\": 1}"
+            },
+            "url": "{{baseUrl}}/api/tasks/1/comments"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attachments",
+      "item": [
+        {
+          "name": "List Task Attachments",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/tasks/1/attachments" }
+        },
+        {
+          "name": "Create Attachment",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"filename\": \"doc.pdf\", \"originalName\": \"document.pdf\", \"mimeType\": \"application/pdf\", \"size\": 1024, \"url\": \"/uploads/doc.pdf\", \"uploadedBy\": 1}"
+            },
+            "url": "{{baseUrl}}/api/tasks/1/attachments"
+          }
+        },
+        {
+          "name": "Get Attachment",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/attachments/1" }
+        },
+        {
+          "name": "Delete Attachment",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/api/attachments/1" }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Dashboard Stats",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/analytics/dashboard" }
+        },
+        {
+          "name": "Activity Logs",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/activity" }
+        }
+      ]
+    }
+  ]
+}
